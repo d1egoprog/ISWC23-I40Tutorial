@@ -15,20 +15,20 @@ This tutorial is organized field of Neuro-Symbolic AI and Industry 4.0:
   *Email:* fixed-term.diego.rincon \[at\] de.bosch.com, rinconyanezd+iswc \[at\] gmail.com 
 
 - **[Irlan Grangel-Gonzalez](https://www.linkedin.com/in/dr-irlan-grangel-gonzalez/)**    
-*Affiliation:* Bosch Corporate Research
-*Email:* irlan.grangelgonzalez \[at\] de.bosch.com
+  *Affiliation:* Bosch Corporate Research
+  *Email:* irlan.grangelgonzalez \[at\] de.bosch.com
 
 - **[Mohamed H. Gad-elrab](https://www.linkedin.com/in/gadelrab/)**    
-*Affiliation:* Bosch Corporate Research
-*Email:* Mohamed.Gad-Elrab \[at\]  de.bosch.com
+  *Affiliation:* Bosch Corporate Research
+  *Email:* Mohamed.Gad-Elrab \[at\]  de.bosch.com
 
 - **[Yuqicheng Zhu](https://www.linkedin.com/in/yuqicheng-zhu-531658161/)**
-*Affiliation:* Bosch Center for AI
-*Email:* Yuqicheng.Zhu \[at\] de.bosch.com
+  *Affiliation:* Bosch Center for AI
+  *Email:* Yuqicheng.Zhu \[at\] de.bosch.com
 
 - **[Evgeny Kharlamov](https://www.linkedin.com/in/evgeny-kharlamov-98721a7/)**    
-*Affiliation:* Bosch Corporate Research
-*Email:* Evgeny.Kharlamov \[at\]  de.bosch.com
+  *Affiliation:* Bosch Corporate Research
+  *Email:* Evgeny.Kharlamov \[at\]  de.bosch.com
 
 Feel free to reach out to us with any questions or concerns regarding the tutorial. We look forward to your participation!
 
