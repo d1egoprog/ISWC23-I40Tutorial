@@ -1,0 +1,27 @@
+PREFIX qudt:     <http://qudt.org/schema/qudt#> 
+prefix core: <https://eclipse-esmf.github.io/ontologies/I4.0/Core/> 
+prefix param: <https://eclipse-esmf.github.io/ontologies/I4.0/Parameter/> 
+prefix prod: <https://eclipse-esmf.github.io/ontologies/I4.0/Product/> 
+prefix prod-seg: <https://eclipse-esmf.github.io/ontologies/I4.0/ProductSegment/> 
+prefix pros-seg: <https://eclipse-esmf.github.io/ontologies/I4.0/ProcessSegment/> 
+
+
+SELECT ?product ?parameter ?unit_of_measurement ?numeric_value
+WHERE {
+  ?product_instance a prod:Product;
+             prod:materialNumber ?material_number ;
+             prod:productId ?product_id ;
+             prod:productName ?product_name ;
+             core:requiresProductSegment ?product_segment ;
+  .
+  ?product_segment core:hasParameterSpecification ?parameter_specification_instance .
+  ?parameter_specification_instance param:hasParameter ?parameter_instance . 
+  ?parameter_value_instance param:isValueOf ?parameter_instance . 
+  ?parameter_instance param:hasUnit ?unit.
+  ?unit qudt:hasUnit ?unit_of_measurement ;
+        qudt:numericValue ?numeric_value ;
+  .
+
+  BIND(REPLACE(STR(?product_instance), "^https://eclipse-esmf.github.io/ontologies/I4.0/Product/", "prod:") AS ?product)
+  BIND(REPLACE(STR(?parameter_instance), "^https://eclipse-esmf.github.io/ontologies/I4.0/Parameter/", "param:") AS ?parameter)
+}
