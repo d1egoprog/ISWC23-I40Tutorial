@@ -8,7 +8,7 @@ During the hands-on session at the International Semantic Web Conference, partic
 
 ## Organizers
 
-This tutorial is organized field of Neuro-Symbolic AI and Industry 4.0:
+This tutorial is organized by Robert Bosch researhers in the field of Neuro-Symbolic AI and Industry 4.0:
 
 - **[Diego Rincon-Yanez](https://d1egoprog.co)**  
   *Affiliation:* Bosch Center for AI 
