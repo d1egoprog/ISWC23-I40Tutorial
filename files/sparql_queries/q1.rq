@@ -1,0 +1,28 @@
+prefix core: <https://eclipse-esmf.github.io/ontologies/I4.0/Core/> 
+prefix owl: <http://www.w3.org/2002/07/owl#> 
+prefix param: <https://eclipse-esmf.github.io/ontologies/I4.0/Parameter/> 
+prefix prod: <https://eclipse-esmf.github.io/ontologies/I4.0/Product/> 
+prefix prod-seg: <https://eclipse-esmf.github.io/ontologies/I4.0/ProductSegment/> 
+prefix pros-seg: <https://eclipse-esmf.github.io/ontologies/I4.0/ProcessSegment/> 
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+# Product Name, Parameter specification and value of the product with a given material number
+SELECT ?product_name ?parameter_specification ?parameter_value
+WHERE {
+
+  ?product a prod:Product;
+             prod:materialNumber ?material_number ;
+             prod:productId ?product_id ;
+             prod:productName ?product_name ;
+             core:requiresProductSegment ?product_segment ;
+  .
+
+  ?product_segment core:hasParameterSpecification ?parameter_specification .
+  
+  ?parameter_specification param:hasParameter ?parameter . 
+  
+  ?parameter_value param:isValueOf ?parameter .
+  
+  FILTER (?material_number = "1111222333") 
+} 

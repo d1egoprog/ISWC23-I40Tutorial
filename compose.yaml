@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  mapping:
+    build: 
+      context: ./1.${COMPONENT_1}/.
+      args:
+        - VERSION=${VERSION}
+        - COMPONENT_NAME=${COMPONENT_1}
+    environment:
+      - ONTOLOGY=${ONTOLOGY}
+      - OUTPUT_KG=${OUTPUT_KG}
+      - INPUT_MAPPING=${INPUT_MAPPING}
+    volumes:
+      - ./files/datasources:/opt/${COMPONENT_1}/datasources
+      - ./files/ontologies:/opt/${COMPONENT_1}/ontologies
+      - ./files/mappings:/opt/${COMPONENT_1}/mappings
+      - ./files/output:/opt/${COMPONENT_1}/output
+    image: ${PROJECT_PREFIX}-${COMPONENT_1}:${VERSION}
+  querying:
+    environment:
+      - INPUT_KG=${OUTPUT_KG}_merged.ttl
+    volumes:
+    - ./files/output:/opt/jena-fuseki/output
+    - ./files/logs:/opt/jena-fuseki/logs
+    ports:
+      - 3030:3030
+    image: d1egoprog/jena-fuseki:4.9.0-web
+    depends_on:
+      mapping:
+        condition: service_completed_successfully
+  visualization:
+    image: d1egoprog/webvowl:1.1.7
+    ports:
+        - 8080:8080
+    restart: always
+    depends_on:
+      mapping:
+        condition: service_completed_successfully

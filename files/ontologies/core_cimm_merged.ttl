@@ -1,0 +1,380 @@
+@prefix : <https://eclipse-esmf.github.io/ontologies/I4.0/Core#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix eqm: <https://eclipse-esmf.github.io/ontologies/I4.0/Equipment/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix core: <https://eclipse-esmf.github.io/ontologies/I4.0/Core/> .
+@prefix phys: <https://eclipse-esmf.github.io/ontologies/I4.0/PhysicalAsset/> .
+@prefix prod: <https://eclipse-esmf.github.io/ontologies/I4.0/Product/> .
+@prefix qudt: <http://qudt.org/schema/qudt#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix param: <https://eclipse-esmf.github.io/ontologies/I4.0/Parameter/> .
+@prefix prod-seg: <https://eclipse-esmf.github.io/ontologies/I4.0/ProductSegment/> .
+@prefix pros-seg: <https://eclipse-esmf.github.io/ontologies/I4.0/ProcessSegment/> .
+@base <https://eclipse-esmf.github.io/ontologies/I4.0/Core> .
+
+<https://eclipse-esmf.github.io/ontologies/I4.0/Core> rdf:type owl:Ontology ;
+                                                       dc:created "July 13th, 2022"@en ;
+                                                       dc:creator "Irlan Grangel-Gonzalez, Felix Loesch"@en ,
+                                                                  "https://www.linkedin.com/in/dr-felix-l%C3%B6sch-0083294b/" ,
+                                                                  "https://www.linkedin.com/in/dr-irlan-grangel-gonzalez/" ,
+                                                                  "https://www.linkedin.com/in/fabio-massari-b63892/" ,
+                                                                  "https://www.linkedin.com/in/marcel-keller-5591a174/" ,
+                                                                  "https://www.linkedin.com/in/nico-wilhelm-5b306867/" ;
+                                                       dc:modified "July 11th, 2023"@en ;
+                                                       dc:title "ESMF I4.0 Core Information Model - Core Ontology"@en ;
+                                                       rdfs:comment "This ontology integrates the sub-ontologies of the ESMF I4.0 Core Information Model."@en ;
+                                                       rdfs:label "ESMF I4.0 Core Information Model - Core Ontology"@en ;
+                                                       owl:versionInfo "1.0"@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/created
+dc:created rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/creator
+dc:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/modified
+dc:modified rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+dc:title rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+param:hasUnit a owl:ObjectProperty ;
+  rdfs:domain param:Parameter ;
+  rdfs:range qudt:Unit ;
+  rdfs:comment "Relationship between \"Parameter\" and \"Unit\""@en ;
+  rdfs:label "has unit" ,
+    "has unit"@en .
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Core/hasMaterial
+core:hasMaterial rdf:type owl:ObjectProperty ;
+                 rdfs:domain prod-seg:MaterialSpecification ;
+                 rdfs:range prod:Material ;
+                 rdfs:comment "Relationship between \"MaterialSpecification\" and \"Material\""@en ;
+                 rdfs:label "has material" .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Core/hasParameterSpecification
+core:hasParameterSpecification rdf:type owl:ObjectProperty ;
+                               rdfs:domain pros-seg:ProcessSegment ,
+                                           prod-seg:ProductSegment ;
+                               rdfs:range param:ParameterSpecification ;
+                               rdfs:comment "Relationship between \"ProcessSegment\" and \"ProductSegment\""@en ;
+                               rdfs:label "has parameter specification" .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Core/hasParameterValue
+core:hasParameterValue rdf:type owl:ObjectProperty ;
+                       rdfs:domain prod-seg:SegmentResult ;
+                       rdfs:range param:ParameterValue ;
+                       rdfs:comment "Relationship between \"SegmentResult\" and \"ParameterValue\""@en ;
+                       rdfs:label "has parameter value" .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Core/implementsProcessSegment
+core:implementsProcessSegment rdf:type owl:ObjectProperty ;
+                              rdfs:domain prod-seg:ProductSegment ;
+                              rdfs:range pros-seg:ProcessSegment ;
+                              rdfs:comment "Relationship between \"ProductSegment\" and \"ProcessSegment\""@en ;
+                              rdfs:label "implements process segment" .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Core/requiresProductSegment
+core:requiresProductSegment rdf:type owl:ObjectProperty ;
+                            rdfs:domain prod:Product ;
+                            rdfs:range prod-seg:ProductSegment ;
+                            rdfs:comment "Relationship between \"Product\" and \"ProductSegment\""@en ;
+                            rdfs:label "requires product segment" .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Parameter/hasParameter
+param:hasParameter rdf:type owl:ObjectProperty ;
+                   rdfs:domain param:ParameterSpecification ;
+                   rdfs:range param:Parameter ;
+                   rdfs:comment "Relationship between \"ParameterSpecification\" and \"Parameter\""@en ;
+                   rdfs:label "has parameter" ,
+                              "has parameter"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Parameter/isValueOf
+param:isValueOf rdf:type owl:ObjectProperty ;
+                rdfs:domain param:ParameterValue ;
+                rdfs:range param:Parameter ;
+                rdfs:comment "Relationship between \"ParameterValue\" and \"Parameter\""@en ;
+                rdfs:label "is value of" ,
+                           "is value of"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/ProcessSegment/consistsOfProcessSegment
+pros-seg:consistsOfProcessSegment rdf:type owl:ObjectProperty ;
+                                  rdfs:domain pros-seg:Process ;
+                                  rdfs:range pros-seg:ProcessSegment ;
+                                  rdfs:comment "Relationship between Process and ProcessSegment. A process consists of 0..n process segments."@en ;
+                                  rdfs:label "consistsOfProcessSegment" ,
+                                             "consistsOfProcessSegment"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Product/assembledFromMaterial
+prod:assembledFromMaterial rdf:type owl:ObjectProperty ;
+                           rdfs:domain prod:Material ;
+                           rdfs:range prod:Material ;
+                           rdfs:label "assembled from material" .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Product/assembledFromProcessedPart
+prod:assembledFromProcessedPart rdf:type owl:ObjectProperty ;
+                                rdfs:domain prod:ProcessedPart ;
+                                rdfs:range prod:ProcessedPart ;
+                                rdfs:label "assembled from processed part" .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Product/relatesToMaterial
+prod:relatesToMaterial rdf:type owl:ObjectProperty ;
+                       rdfs:domain prod:ProcessedPart ;
+                       rdfs:range prod:Material ;
+                       rdfs:label "relates to material" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+prod-seg:productSegmentName rdf:type owl:DatatypeProperty ;
+                    rdfs:domain prod-seg:ProductSegment ;
+                    rdfs:range xsd:string;
+                    rdfs:comment "Defines the name of the product segment."@en ;
+                    rdfs:label "product segment name"@en .
+
+
+param:parameterSpecificationName rdf:type owl:DatatypeProperty ;
+                    rdfs:domain param:Parameter ;
+                    rdfs:range xsd:string;
+                    rdfs:comment "Defines the name of the parameter specification."@en ;
+                    rdfs:label "parameter specification name"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Parameter/paramDataType
+param:paramDataType rdf:type owl:DatatypeProperty ;
+                    rdfs:domain param:Parameter ;
+                    rdfs:comment "Defines the data type of a parameter. Valid ranges are all xsd data types"@en ;
+                    rdfs:label "param datatype" ,
+                               "param datatype"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Parameter/paramMaxTolerance
+param:paramMaxTolerance rdf:type owl:DatatypeProperty ;
+                        rdfs:domain param:Parameter ;
+                        rdfs:comment "Defines the upper tolerance limit of a parameter."@en ;
+                        rdfs:label "parameter max tolerance" ,
+                                   "parameter max tolerance"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Parameter/paramMinTolerance
+param:paramMinTolerance rdf:type owl:DatatypeProperty ;
+                        rdfs:domain param:Parameter ;
+                        rdfs:comment "Defines the lower tolerance limit of a parameter."@en ;
+                        rdfs:label "parameter min tolerance" ,
+                                   "parameter min tolerance"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Parameter/paramValue
+param:paramValue rdf:type owl:DatatypeProperty ;
+                 rdfs:domain param:ParameterValue ;
+                 rdfs:comment "Defines the value of a parameter."@en ;
+                 rdfs:label "parameter value" ,
+                            "parameter value"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/ProcessSegment/processName
+pros-seg:processName rdf:type owl:DatatypeProperty ;
+                     rdfs:domain pros-seg:Process ;
+                     rdfs:range xsd:string ;
+                     rdfs:comment "Defines the name of the Process"@en ;
+                     rdfs:label "process Name"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/ProcessSegment/processNumber
+pros-seg:processNumber rdf:type owl:DatatypeProperty ,
+                                owl:FunctionalProperty ;
+                       rdfs:domain pros-seg:ProcessSegment ;
+                       rdfs:range rdfs:Literal ;
+                       rdfs:comment "Number associated to a process"@en ;
+                       rdfs:label "process Number"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/ProcessSegment/standardProcessNumber
+pros-seg:standardProcessNumber rdf:type owl:DatatypeProperty ,
+                                        owl:FunctionalProperty ;
+                               rdfs:domain pros-seg:ProcessSegment ;
+                               rdfs:range rdfs:Literal ;
+                               rdfs:comment "Standard process number"@en ;
+                               rdfs:label "standard Process Number"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Product/materialNumber
+prod:materialNumber rdf:type owl:DatatypeProperty ,
+                             owl:FunctionalProperty ;
+                    rdfs:domain prod:Material ;
+                    rdfs:range xsd:string ;
+                    rdfs:comment "Unique identifier of the Material"@en ;
+                    rdfs:label "materialNumber"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Product/productId
+prod:productId rdf:type owl:DatatypeProperty ,
+                        owl:FunctionalProperty ;
+               rdfs:domain prod:Product ;
+               rdfs:range xsd:string ;
+               rdfs:comment "ID of the product"@en ;
+               rdfs:label "product ID"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Product/productName
+prod:productName rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty ;
+                 rdfs:domain prod:Product ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "Name of the product"@en ;
+                 rdfs:label "product Name"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Parameter/Parameter
+param:Parameter rdf:type owl:Class ;
+                rdfs:comment "An individually measured item or property of a process segment or product segment. Parameters belong to a Parameter Specification."@en ;
+                rdfs:label "Parameter" ,
+                           "Parameter"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Parameter/ParameterSpecification
+param:ParameterSpecification rdf:type owl:Class ;
+                             rdfs:comment "Specifies the setting parameters and/or result parameters for a process segment or product segment. A parameter specification consists of 1..n parameters."@en ;
+                             rdfs:label "Parameter Specification" ,
+                                        "Parameter Specification"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Parameter/ParameterValue
+param:ParameterValue rdf:type owl:Class ;
+                     rdfs:comment """Concrete value of a parameter.
+Note 1: For example, the parameter value of the parameter “Temperature” might be “18.5”."""@en ;
+                     rdfs:label "Parameter Value" ,
+                                "Parameter Value"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Parameter/ResultParameter
+param:ResultParameter rdf:type owl:Class ;
+                      rdfs:subClassOf param:Parameter ;
+                      rdfs:comment "Description of the result parameters of a given process or product segment. Result parameters can also contain tolerance values. Subclass of Parameter"@en ;
+                      rdfs:label "Result Parameter" ,
+                                 "Result Parameter"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Parameter/SettingParameter
+param:SettingParameter rdf:type owl:Class ;
+                       rdfs:subClassOf param:Parameter ;
+                       rdfs:comment """Description of input / setting parameters of a given process or product segment. Subclass of Parameter.
+Note 1: Setting parameters can also contain tolerance values."""@en ;
+                       rdfs:label "Setting Parameter" ,
+                                  "Setting Parameter"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/ProcessSegment/Process
+pros-seg:Process rdf:type owl:Class ;
+                 rdfs:comment "A Process describes a manufacturing process and consists of 0..n ProcessSegment."@en ;
+                 rdfs:label "Process"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/ProcessSegment/ProcessSegment
+pros-seg:ProcessSegment rdf:type owl:Class ;
+                        rdfs:comment "A process segment is an identification of resources with specific capabilities needed for a segment of production, independent of any particular product or operations definition."@en ;
+                        rdfs:label "ProcessSegment"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Product/Assembly
+prod:Assembly rdf:type owl:Class ;
+              rdfs:subClassOf prod:SemiFinishedProduct ;
+              rdfs:comment """Description of a tangible good that is the outcome of a previous assembly process. Subclass of material. This includes especially the outcomes of other internal suppliers (e.g., plant A delivering an assembly to plant B).
+Note 1: It is a perspective of the one who uses it to build a more complex material.""" ;
+              rdfs:label "Assembly" .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Product/Component
+prod:Component rdf:type owl:Class ;
+               rdfs:subClassOf prod:SemiFinishedProduct ;
+               rdfs:comment """Description of a tangible good that is input to an assembly process and is typically purchased from a supplier in a “ready for use” form. Subclass of material.
+Note 1: For example, electronic components, bolts and nuts, gear box for a car OEM.
+Note 2: It is a perspective of the one who uses it to build a more complex material.""" ;
+               rdfs:label "Component" .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Product/Material
+prod:Material rdf:type owl:Class ;
+              rdfs:comment """Abstraction of a tangible result of some manufacturing or assembly process. A product, semi-finished product, sub-assembly, component, or raw material.
+Note 1: The term has been purposely selected to create an umbrella for a broad spectrum of possible examples, anAbstraction of a tangible result of some manufacturing or assembly process. A product, semi-finished product, sub-assembly, component, or raw material.
+Note 2: Subclasses like product, semi-finished product and raw material allow for more precise and perspective specific classification of materials for the specific context.""" ;
+              rdfs:label "Material" .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Product/ProcessedPart
+prod:ProcessedPart rdf:type owl:Class ;
+                   rdfs:comment "Description of a unique example/occurrence of a specific material. As such it can be an instantiation of any of the material subclasses. A processed part refers to material it represents via the “relatesToMaterial” relationship." ;
+                   rdfs:label "Processed Part" .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Product/Product
+prod:Product rdf:type owl:Class ;
+             rdfs:subClassOf prod:Material ;
+             rdfs:comment """Description of a tangible good that is manufactured or assembled and considered ready for being sold to a customer afterwards. Subclass of material.
+Note 1: Product is a perspective of the one who makes it ready for selling.""" ;
+             rdfs:label "Product" .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Product/RawMaterial
+prod:RawMaterial rdf:type owl:Class ;
+                 rdfs:subClassOf prod:Material ;
+                 rdfs:comment """Description of a tangible substrate of a specific manufacturing process that is taken in its basic form as input for subsequent manufacturing. It shall not generally be used in the context of tangible input into assembly process. Subclass of material.
+  Note 1: It is a perspective on the one who uses it to manufacture other goods – for example a silicon wafer is raw material for production of semi-conductor electronic devices, where by itself it is a result of complex preparation process, hence a product from perspective of its supplier.""" ;
+                 rdfs:label "Raw Material" .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/Product/SemiFinishedProduct
+prod:SemiFinishedProduct rdf:type owl:Class ;
+                         rdfs:subClassOf prod:Material ;
+                         rdfs:comment """Description of a tangible good that is not yet finished. Subclass of material.
+Note 1: Usually, a semi-finished product is a sub-assembly or a component of another more complex material and is not sold to a customer by itself.""" ;
+                         rdfs:label "Semi-Finished Product" .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/ProductSegment/MaterialSpecification
+prod-seg:MaterialSpecification rdf:type owl:Class .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/ProductSegment/ProductSegment
+prod-seg:ProductSegment rdf:type owl:Class ;
+                        rdfs:comment "Implementation of a process segment for a concrete product. Thus, a product segment implements a process segment for a concrete product or product variant. A product segment identifies personnel, equipment, and material resources required of a process segment to complete a production step for a specific product. Product specific routing information between product segments can be expressed via the isFollowedBy relationship between product segments. Reference: IEC 62264-1 ID:3.1.29."@en ;
+                        rdfs:label "Product Segment" ,
+                                   "Product Segment"@en .
+
+
+###  https://eclipse-esmf.github.io/ontologies/I4.0/ProductSegment/SegmentResult
+prod-seg:SegmentResult rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

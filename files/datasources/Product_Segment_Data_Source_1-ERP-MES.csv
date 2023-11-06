@@ -1,0 +1,11 @@
+ID,Product_Segment,Product_Name_FK,Process_Segment,Process_Segment_Description,Product_Segment_Parameter_Specification,Product_Segment_Parameter_Specification_Value,Unit
+1,Housing front side,A1,Drill Shaft holes,Drift shaft holes for transmission housing,Hole Diameter,8.00,mm
+2,Housing front side,A1,Drill Shaft holes,Drift shaft holes for transmission housing,Hole length,12.00,mm
+3,Oil pan,A2,Cut oil sealing surface,Clean cut of sealing surface for mounting,Sealing Surface Width,100.00,mm
+4,Oil pan,A2,Cut oil sealing surface,Clean cut of sealing surface for mounting,Sealing Surface Length,80.00,mm
+5,Transmission assembly,A3,Assemble transmission components,Assembly of transmission components,Component Weight,15.00,kg
+6,Transmission assembly,A3,Assemble transmission components,Assembly of transmission components,Assembly Time,45.00,min
+7,Chassis assembly,A4,Install suspension system,Mounting of suspension components,Shock Absorber Length,300.00,mm
+8,Chassis assembly,A4,Install suspension system,Mounting of suspension components,Coil Spring Diameter,150.00,mm
+9,Electrical system,A5,Wire harness installation,Electrical wiring for lighting system,Wire Length,5.00,m
+10,Electrical system,A5,Machine engine block,Machine engine block for production,Block Height,60.00,cm
