@@ -93,6 +93,21 @@ services:
         condition: service_completed_successfully
 ```
 
+## Running on Mac M-type chips
+
+For running on M1 and M2 the parameter `platform: linux/amd64` needs to be added to the service in the docker compose file at the same level from the `build` statement.
+
+``` YAML
+services:
+  mapping:
+    platform: linux/amd64
+    build: 
+      context: ./1.${COMPONENT_1}/.
+      args:
+        - VERSION=${VERSION}
+        - COMPONENT_NAME=${COMPONENT_1}
+```
+
 ## Feedback and Contributions:
 
 We welcome your feedback and contributions to this repository. If you have suggestions, improvements, or additional resources to share, please feel free to open issues, submit pull requests, or reach out to the tutorial organizers.
