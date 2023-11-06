@@ -46,7 +46,7 @@ Download the prepared `compose.yaml` file from the repository via `wget` and exe
 
 ``` BASH
 git clone https://github.com/d1egoprog/ISWC23-I40Tutorial.git
-docker compose -p ISWC23-i40 up -d
+docker compose -p iswc23-i40 up -d
 ```
 
 The previous lines will download the repository (specially for the example files) and run the following docker compose file automatically in a pipeline fashion.
